@@ -9,6 +9,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\Quest;
+use app\models\vardumper;
+
 
 class SiteController extends Controller
 {
@@ -61,9 +64,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = User::find()->all();
-        return $this->render('index');
+        $list = Quest::find()->active()->all();
+        return $this->render('index',["list" => $list]);
     }
+
+    /**
+     * Displays ENTER_ASK.
+     *
+     * @return string
+     */
+    public function actionKot()
+    {
+        $model = Quest::find()->active()->one();
+        return $this->render('kot',["model" => $model]);
+    }
+
 
     /**
      * Login action.
