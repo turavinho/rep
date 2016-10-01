@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\Ask;
+
 
 /**
  * This is the model class for table "{{%quest}}".
@@ -17,7 +19,15 @@ class Quest extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
+0     */
+    /**
+     * Возвращает все вопросы анкеты
      */
+    public function getAsks()
+    {
+        return $this->hasMany(Ask::className(), ['quest_id' => 'id']);
+    }
+
     public static function tableName()
     {
         return '{{%quest}}';

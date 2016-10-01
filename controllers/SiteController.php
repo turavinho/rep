@@ -10,7 +10,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
 use app\models\Quest;
-use app\models\vardumper;
+use yii\helpers\VarDumper;
 
 
 class SiteController extends Controller
@@ -64,6 +64,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $relExample = Quest::find()->where(['id'=>1])->with('asks')->one();
+        VarDumper::dump($relExample->asks,10,true);
+
         $list = Quest::find()->active()->all();
         return $this->render('index',["list" => $list]);
     }
