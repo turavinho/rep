@@ -3,7 +3,7 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[Ask]].
+ * This is the ActiveQuery class for [[ask]].
  *
  * @see Ask
  */
