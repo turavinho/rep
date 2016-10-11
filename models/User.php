@@ -5,13 +5,13 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%users}}".
+ * This is the model class for table "{{%user}}".
  *
- * @property integer $id
+ * @property string $id
+ * @property string $email
+ * @property string $surname
  * @property string $name
- * @property string $last_name
- * @property string $age
- * @property string $gender
+ * @property string $password
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -20,7 +20,7 @@ class User extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%users}}';
+        return '{{%user}}';
     }
 
     /**
@@ -29,9 +29,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'last_name', 'age', 'gender'], 'required'],
-            [['age', 'gender'], 'integer'],
-            [['name', 'last_name'], 'string', 'max' => 255],
+            [['email', 'surname', 'name', 'password'], 'required'],
+            [['email', 'surname', 'name', 'password'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,11 +40,11 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Имя пользователя',
-            'last_name' => 'Фамилия пользователя',
-            'age' => 'Возраст пользователя',
-            'gender' => 'Пол пользоваьеля',
+            'id' => 'первичный ключ',
+            'email' => 'почтовый адрес пользователя',
+            'surname' => 'Фамилия',
+            'name' => 'Имя',
+            'password' => 'Пароль',
         ];
     }
 
