@@ -3,20 +3,20 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[QuestReplies]].
+ * This is the ActiveQuery class for [[AnswerItem]].
  *
- * @see QuestReplies
+ * @see AnswerItem
  */
-class QuestQuery extends \yii\db\ActiveQuery
+class AnswerItemQuery extends \yii\db\ActiveQuery
 {
-    public function active()
+    /*public function active()
     {
-          return $this->andWhere('[[active]]=1');
-    }
+        return $this->andWhere('[[status]]=1');
+    }*/
 
     /**
      * @inheritdoc
-     * @return QuestReplies[]|array
+     * @return AnswerItem[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class QuestQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return QuestReplies|array|null
+     * @return AnswerItem|array|null
      */
     public function one($db = null)
     {

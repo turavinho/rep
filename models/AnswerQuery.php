@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[ask]].
+ * This is the ActiveQuery class for [[Answer]].
  *
- * @see Ask
+ * @see Answer
  */
-class AskQuery extends \yii\db\ActiveQuery
+class AnswerQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class AskQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Ask[]|array
+     * @return Answer[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class AskQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Ask|array|null
+     * @return Answer|array|null
      */
     public function one($db = null)
     {

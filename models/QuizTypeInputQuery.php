@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[AskReplies]].
+ * This is the ActiveQuery class for [[QuizTypeInput]].
  *
- * @see AskReplies
+ * @see QuizTypeInput
  */
-class AskRepliesQuery extends \yii\db\ActiveQuery
+class QuizTypeInputQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class AskRepliesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return AskReplies[]|array
+     * @return QuizTypeInput[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class AskRepliesQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return AskReplies|array|null
+     * @return QuizTypeInput|array|null
      */
     public function one($db = null)
     {
