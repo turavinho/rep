@@ -52,6 +52,9 @@ class LoginForm extends Model
             }
         }
     }
+    //$pattern = "#^[a-z]+$#i";
+    //if (preg_match($pattern, $str)) {
+    //}
 
     /**
      * Logs in a user using the provided username and password.

@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\AskReplies;
 use app\models\Quest;
 use yii\helpers\VarDumper;
 
@@ -64,11 +65,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /*
         $relExample = Quest::find()->where(['id'=>1])->with('asks')->one();
         VarDumper::dump($relExample->asks,10,true);
 
         $list = Quest::find()->active()->all();
         return $this->render('index',["list" => $list]);
+        */
+        $model = AskReplies::find()->one();   //создаем форму авторизации
+        /*if ($model->load(Yii::$app->request->post()) && $model->login()) {  //если данные получены и польз залогинен,
+            return $this->goBack();                                         //отправляем его на текущую страницу
+        }*/
+        return $this->render('index', [     //рендерим страницу авторизации
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -90,15 +100,15 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {   //если польз. авторизирован, то отправляем его на дом. страницу
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $model = new LoginForm();   //создаем форму авторизации
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {  //если данные получены и польз залогинен,
+            return $this->goBack();                                         //отправляем его на текущую страницу
         }
-        return $this->render('login', [
+        return $this->render('login', [     //рендерим страницу авторизации
             'model' => $model,
         ]);
     }

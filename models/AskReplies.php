@@ -11,6 +11,10 @@ use Yii;
  * @property string $quest_id
  * @property string $res_id
  * @property string $value
+ * @property string $name
+ * @property string $surname
+ * @property integer $age
+ * @property integer $gender
  */
 class AskReplies extends \yii\db\ActiveRecord
 {
@@ -28,9 +32,10 @@ class AskReplies extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['quest_id', 'res_id'], 'integer'],
+            [['quest_id', 'res_id', 'age', 'gender'], 'integer'],
             [['value'], 'required'],
             [['value'], 'string'],
+            [['name', 'surname'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,6 +49,10 @@ class AskReplies extends \yii\db\ActiveRecord
             'quest_id' => 'id анкеты',
             'res_id' => 'id ответа',
             'value' => 'Значение',
+            'name' => 'Name',
+            'surname' => 'Surname',
+            'age' => 'Age',
+            'gender' => 'Gender',
         ];
     }
 

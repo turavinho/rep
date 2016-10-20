@@ -67,4 +67,9 @@ class Quest extends \yii\db\ActiveRecord
     {
         return new QuestQuery(get_called_class());
     }
+
+    public function getReplies()
+    {
+        return $this->hasMany(Reply::className(), ['quest_id' => 'id']);
+    }
 }
