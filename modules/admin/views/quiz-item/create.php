@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Quest */
+/* @var $model app\models\QuizItem */
 
-$this->title = 'Create Quest';
-$this->params['breadcrumbs'][] = ['label' => 'Quests', 'url' => ['index']];
+$this->title = 'Create Quiz Item';
+$this->params['breadcrumbs'][] = ['label' => 'Quiz Items', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="quest-create">
+<div class="quiz-item-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

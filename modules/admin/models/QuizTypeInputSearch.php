@@ -5,12 +5,12 @@ namespace app\modules\admin\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\User;
+use app\models\QuizTypeInput;
 
 /**
- * UserQuery represents the model behind the search form about `app\models\User`.
+ * QuizTypeInputSearch represents the model behind the search form about `app\models\quiz-type-input`.
  */
-class UserQuery extends User
+class QuizTypeInputSearch extends QuizTypeInput
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class UserQuery extends User
     {
         return [
             [['id'], 'integer'],
-            [['email', 'surname', 'name', 'password'], 'safe'],
+            [['title', 'code'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UserQuery extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = QuizTypeInput::find();
 
         // add conditions that should always apply here
 
@@ -62,10 +62,8 @@ class UserQuery extends User
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'surname', $this->surname])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'password', $this->password]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'code', $this->code]);
 
         return $dataProvider;
     }

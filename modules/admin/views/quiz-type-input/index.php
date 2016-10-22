@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\models\AskQuery */
+/* @var $searchModel app\modules\admin\models\QuizTypeInputSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Asks';
+$this->title = 'Quiz Type Inputs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ask-index">
+<div class="quiz-type-input-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Ask', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Quiz Type Input', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,9 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'quest_id',
-            'type',
-            'options:ntext',
+            'code',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

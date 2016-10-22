@@ -3,7 +3,7 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[QuizItem]].
+ * This is the ActiveQuery class for [[quiz-item]].
  *
  * @see QuizItem
  */

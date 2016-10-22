@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\admin\models\QuestSearch */
+/* @var $model app\modules\admin\models\QuizTypeInputSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="quest-search">
+<div class="quiz-type-input-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,11 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'description') ?>
-
-    <?= $form->field($model, 'active') ?>
-
-    <?= $form->field($model, 'timer') ?>
+    <?= $form->field($model, 'code') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

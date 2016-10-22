@@ -14,6 +14,11 @@ use Yii;
  */
 class QuizItem extends \yii\db\ActiveRecord
 {
+    public function getQuizType()
+    {
+      return $this->hasOne(QuizTypeInput::className(), ['id' => 'type_id']); //relation 1 to many quiz-item *-> quiz-type-input
+    }
+
     /**
      * @inheritdoc
      */

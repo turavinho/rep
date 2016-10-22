@@ -3,7 +3,7 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[QuizTypeInput]].
+ * This is the ActiveQuery class for [[quiz-type-input]].
  *
  * @see QuizTypeInput
  */

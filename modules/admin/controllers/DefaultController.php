@@ -18,10 +18,10 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         $menu = [
-            ['label'=>'Пользователи', 'url'=>['user/index']],
-            ['label'=>'Анкеты', 'url'=>['quest/index']],
-            ['label'=>'Вопросы', 'url'=>['ask/index']],
-            ['label'=>'Ответы', 'url'=>['reply/index']],
+            ['label'=>'Анкеты', 'url'=>['quiz/index']],
+            ['label'=>'Вопросы', 'url'=>['quiz-item/index']],
+            ['label'=>'Типы вопросов', 'url'=>['quiz-type-input/index']],
+            ['label'=>'Ответы', 'url'=>['answer/index']],
         ];
 
         $dataProvider = new ArrayDataProvider([

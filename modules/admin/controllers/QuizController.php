@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Quest;
-use app\modules\admin\models\QuestSearch;
+use app\models\Quiz;
+use app\models\QuizSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * QuestController implements the CRUD actions for Quest model.
+ * QuizController implements the CRUD actions for Quiz model.
  */
-class QuestController extends Controller
+class QuizController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class QuestController extends Controller
     }
 
     /**
-     * Lists all Quest models.
+     * Lists all Quiz models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new QuestSearch();
+        $searchModel = new QuizSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class QuestController extends Controller
     }
 
     /**
-     * Displays a single Quest model.
+     * Displays a single Quiz model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class QuestController extends Controller
     }
 
     /**
-     * Creates a new Quest model.
+     * Creates a new Quiz model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Quest();
+        $model = new Quiz();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class QuestController extends Controller
     }
 
     /**
-     * Updates an existing Quest model.
+     * Updates an existing Quiz model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class QuestController extends Controller
     }
 
     /**
-     * Deletes an existing Quest model.
+     * Deletes an existing Quiz model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class QuestController extends Controller
     }
 
     /**
-     * Finds the Quest model based on its primary key value.
+     * Finds the Quiz model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Quest the loaded model
+     * @return Quiz the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Quest::findOne($id)) !== null) {
+        if (($model = Quiz::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

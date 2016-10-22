@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Quest;
+use app\models\Quiz;
 
 /**
- * QuestSearch represents the model behind the search form about `app\models\Quest`.
+ * QuizSearch represents the model behind the search form about `app\models\Quiz`.
  */
-class QuestSearch extends Quest
+class QuizSearch extends Quiz
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class QuestSearch extends Quest
     public function rules()
     {
         return [
-            [['id', 'active', 'timer'], 'integer'],
-            [['title', 'description'], 'safe'],
+            [['id', 'time', 'sort'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class QuestSearch extends Quest
      */
     public function search($params)
     {
-        $query = Quest::find();
+        $query = Quiz::find();
 
         // add conditions that should always apply here
 
@@ -60,12 +60,11 @@ class QuestSearch extends Quest
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'active' => $this->active,
-            'timer' => $this->timer,
+            'time' => $this->time,
+            'sort' => $this->sort,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

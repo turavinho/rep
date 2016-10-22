@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Ask;
-use app\modules\admin\models\AskQuery;
+use app\models\QuizTypeInput;
+use app\modules\admin\models\QuizTypeInputSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AskController implements the CRUD actions for Ask model.
+ * QuizTypeInputController implements the CRUD actions for quiz-type-input model.
  */
-class AskController extends Controller
+class QuizTypeInputController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class AskController extends Controller
     }
 
     /**
-     * Lists all Ask models.
+     * Lists all quiz-type-input models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AskQuery();
+        $searchModel = new QuizTypeInputSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class AskController extends Controller
     }
 
     /**
-     * Displays a single Ask model.
+     * Displays a single quiz-type-input model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class AskController extends Controller
     }
 
     /**
-     * Creates a new Ask model.
+     * Creates a new quiz-type-input model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Ask();
+        $model = new QuizTypeInput();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class AskController extends Controller
     }
 
     /**
-     * Updates an existing Ask model.
+     * Updates an existing quiz-type-input model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class AskController extends Controller
     }
 
     /**
-     * Deletes an existing Ask model.
+     * Deletes an existing quiz-type-input model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class AskController extends Controller
     }
 
     /**
-     * Finds the Ask model based on its primary key value.
+     * Finds the quiz-type-input model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Ask the loaded model
+     * @return QuizTypeInput the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Ask::findOne($id)) !== null) {
+        if (($model = QuizTypeInput::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

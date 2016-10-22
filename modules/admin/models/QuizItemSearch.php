@@ -5,12 +5,12 @@ namespace app\modules\admin\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Ask;
+use app\models\QuizItem;
 
 /**
- * AskQuery represents the model behind the search form about `app\models\Ask`.
+ * QuizItemSearch represents the model behind the search form about `app\models\quiz-item`.
  */
-class AskQuery extends Ask
+class QuizItemSearch extends QuizItem
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class AskQuery extends Ask
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'quest_id', 'type', 'options'], 'safe'],
+            [['id', 'quiz_id', 'type_id'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AskQuery extends Ask
      */
     public function search($params)
     {
-        $query = Ask::find();
+        $query = QuizItem::find();
 
         // add conditions that should always apply here
 
@@ -60,12 +60,11 @@ class AskQuery extends Ask
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'quiz_id' => $this->quiz_id,
+            'type_id' => $this->type_id,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'quest_id', $this->quest_id])
-            ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'options', $this->options]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

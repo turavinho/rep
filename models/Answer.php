@@ -18,6 +18,16 @@ use Yii;
  */
 class Answer extends \yii\db\ActiveRecord
 {
+
+    public function getQuiz()
+    {
+        return $this->hasMany(Quiz::className(), ['quiz_id' => 'id']);  //relation 1 to many Answer *-> Quiz
+    }
+
+    public function getAnswerItem()
+    {
+         return $this->hasMany(AnswerItem::className(), ['answer_id]' => 'id']); //relation 1 to many Answer *<- AnswerItem
+    }
     /**
      * @inheritdoc
      */

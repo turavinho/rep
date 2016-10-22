@@ -14,6 +14,10 @@ use Yii;
  */
 class Quiz extends \yii\db\ActiveRecord
 {
+    public function getItems()
+    {
+        return $this->hasMany(QuizItem::className(), ['quiz_id' => 'id']); // relation 1 to many quiz-item ->* Quiz
+    }
     /**
      * @inheritdoc
      */
