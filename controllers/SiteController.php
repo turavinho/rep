@@ -8,9 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\User;
-use app\models\AskReplies;
-use app\models\Quest;
+
+use app\models\Quiz;
 use yii\helpers\VarDumper;
 
 
@@ -72,7 +71,7 @@ class SiteController extends Controller
         $list = Quest::find()->active()->all();
         return $this->render('index',["list" => $list]);
         */
-        $model = AskReplies::find()->one();   //создаем форму авторизации
+        $model = Quiz::find()->one();
         /*if ($model->load(Yii::$app->request->post()) && $model->login()) {  //если данные получены и польз залогинен,
             return $this->goBack();                                         //отправляем его на текущую страницу
         }*/
@@ -88,7 +87,7 @@ class SiteController extends Controller
      */
     public function actionKot()
     {
-        $model = Quest::find()->active()->one();
+        $model = Quiz::find()->active()->one();
         return $this->render('kot',["model" => $model]);
     }
 
