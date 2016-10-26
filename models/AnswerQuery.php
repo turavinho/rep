@@ -9,10 +9,15 @@ namespace app\models;
  */
 class AnswerQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function byId($id)
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere(['id' => $id]);
+    }
+
+    public function isActive()
+    {
+        return $this->andWhere('is_closed = 0');
+    }
 
     /**
      * @inheritdoc

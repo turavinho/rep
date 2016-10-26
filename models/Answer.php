@@ -18,7 +18,6 @@ use Yii;
  */
 class Answer extends \yii\db\ActiveRecord
 {
-
     public function getQuiz()
     {
         return $this->hasMany(Quiz::className(), ['quiz_id' => 'id']);  //relation 1 to many Answer *-> Quiz
@@ -42,10 +41,10 @@ class Answer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['quiz_id', 'name', 'last_name', 'age', 'gender', 'start_time', 'is_closed'], 'required'],
-            [['quiz_id', 'is_closed'], 'integer'],
+            ['quiz_id', 'required'],
+            [['name', 'last_name', 'gender'], 'filter', 'filter' => 'trim'],
+            [['quiz_id', 'is_closed', 'age'], 'filter', 'filter' => 'intval'],
             [['start_time'], 'safe'],
-            [['name', 'last_name', 'age', 'gender'], 'string', 'max' => 255],
         ];
     }
 
@@ -74,4 +73,22 @@ class Answer extends \yii\db\ActiveRecord
     {
         return new AnswerQuery(get_called_class());
     }
+
+    public function beforeSave($insert)     //записываем в анкету время старта
+    {
+        if ($this->start_time == '0000-00-00 00:00:00')
+        {
+            $this->last_name=date('Y-m-d H:i:s');
+        }
+        return parent::beforeSave($insert);
+    }
+
+    public function isPersonalDataComplete()
+    {
+        return !empty($this->last_name) && !empty($this->name) && !empty($this->age) && !empty($this->gender);
+    }
+
+
+
+
 }

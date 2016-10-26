@@ -6,11 +6,12 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use app\models\Answer;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="site-index">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
@@ -18,14 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
+        'fieldConfig' => array(
             'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
+        ),
     ]); ?>
     <?= $form->field($model, 'name')->textInput() ?>
 
-    <?= $form->field($model, 'surname')->textInput() ?>
+    <?= $form->field($model, 'last_name')->textInput() ?>
 
     <?= $form->field($model, 'age')->textInput() ?>
 

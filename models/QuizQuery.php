@@ -9,10 +9,13 @@ namespace app\models;
  */
 class QuizQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function nextUnAnswered(array $quizes)
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        if ($quizes) {
+            $this->andWhere([['not in', 'id', $quizes]]);
+        }
+        return $this->addOrderBy(['sort' => SORT_ASC]);
+    }
 
     /**
      * @inheritdoc

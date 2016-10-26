@@ -6,8 +6,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Answer;
+use app\models\QuizItem;
 
 use app\models\Quiz;
 use yii\helpers\VarDumper;
@@ -18,6 +18,21 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+    public function actionAnswer()
+    {
+        $model = new Answer();
+        if(isset($_POST['Answer']))
+        {
+            $model->attributes = Yii::$app->request->post('Signup');
+            if($model->validate() && $model->Answer())
+            {
+                return $this->goHome();
+            }
+        }
+        return $this->render('sign-up', ['model'=>$model]);
+    }
+
+
     public function behaviors()
     {
         return [
@@ -64,31 +79,24 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        /*
-        $relExample = Quest::find()->where(['id'=>1])->with('asks')->one();
-        VarDumper::dump($relExample->asks,10,true);
+        $answerIdCookie = Yii::$app->request->cookies['answer_id'];     //проверяем, установлена ли кука с анкетой
+        $alreadyAnswered = Yii::$app->request->cookies['already_answered'];
+        $alreadyAnswered = $alreadyAnswered ? explode(',', $alreadyAnswered) : [];
+        if ($answerIdCookie) {                                          //если да, то выводим ее
+            $answerModel = Answer::find()->byId($answerIdCookie)->isActive()->one();
+        }
+        if (empty($answerModel)) {                                              //если нет, то создаем новую анкету
+            $questionModel = Quiz::find()->nextUnAnswered($alreadyAnswered)->one();
+            $answerModel = new Answer();
+            $answerModel->quiz_id = $questionModel->id;
+            $answerModel->save();
+            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                'name' => 'answer_id',
+                'value' => $answerModel->id,
+            ]));
+        }
 
-        $list = Quest::find()->active()->all();
-        return $this->render('index',["list" => $list]);
-        */
-        $model = Quiz::find()->one();
-        /*if ($model->load(Yii::$app->request->post()) && $model->login()) {  //если данные получены и польз залогинен,
-            return $this->goBack();                                         //отправляем его на текущую страницу
-        }*/
-        return $this->render('index', [     //рендерим страницу авторизации
-            'model' => $model,
-        ]);
-    }
 
-    /**
-     * Displays ENTER_ASK.
-     *
-     * @return string
-     */
-    public function actionKot()
-    {
-        $model = Quiz::find()->active()->one();
-        return $this->render('kot',["model" => $model]);
     }
 
 
@@ -97,6 +105,7 @@ class SiteController extends Controller
      *
      * @return string
      */
+    /**
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {   //если польз. авторизирован, то отправляем его на дом. страницу
@@ -111,7 +120,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
+    **/
     /**
      * Logout action.
      *
