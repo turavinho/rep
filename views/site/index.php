@@ -32,6 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'gender')->textInput() ?>
 
+    <?php
+         if (isPersonalDataComplete)
+         {
+             render()
+         }
+    ?>
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
