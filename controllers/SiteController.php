@@ -7,8 +7,6 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\Answer;
-use app\models\QuizItem;
-
 use app\models\Quiz;
 use yii\helpers\VarDumper;
 
@@ -29,7 +27,7 @@ class SiteController extends Controller
                 return $this->goHome();
             }
         }
-        return $this->render('index', ['model'=>$model]);
+      //  return $this->render('index', ['model'=>$model]);
     }
 
 
@@ -137,7 +135,7 @@ class SiteController extends Controller
      * Displays contact page.
      *
      * @return string
-     */
+
     public function actionContact()
     {
         $model = new ContactForm();
@@ -150,7 +148,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
+     */
     /**
      * Displays about page.
      *

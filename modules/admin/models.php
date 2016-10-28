@@ -2,6 +2,7 @@
 
 namespace app\modules\admin;
 
+use app\models\Answer;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
