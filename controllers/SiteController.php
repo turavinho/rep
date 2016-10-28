@@ -93,7 +93,10 @@ class SiteController extends Controller
                 'value' => $answerModel->id,
             ]));
         }
-        return $this->render('index');
+        if ($answerModel->load(Yii::$app->request->post())) {
+            $answerModel->save();
+        }
+        return $this->render('index', ['model' => $answerModel]);
 
     }
 

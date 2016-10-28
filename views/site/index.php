@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+/* @var $model app\models\Answer */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -19,31 +19,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(); ?>
+                <?php if ($model->isPersonalDataComplete()):?>
+                    <?php foreach ($model->quiz->items as $key => $item):?>
+                        <?php switch($item->quizType->code) {
+                            case 'input':
+                                echo Html::label($item->title);
+                                echo "<br>";
+                                echo Html::input('text', 'answers['.$item->id.']');
+                                echo "<br>";
+                                break;
+                            case 'textarea':
+                                echo Html::label($item->title);
+                                echo "<br>";
+                                echo Html::textarea('answers['.$item->id.']');
+                                echo "<br>";
+                                break;
+                        } ?>
+                    <?php endforeach; ?>
 
-            <?= $form->field($$this->$model, 'name')->textInput() ?>
-
-            <?= $form->field($this->$model, 'last_name')->textInput() ?>
-
-            <?= $form->field($this->$model, 'age')->textInput() ?>
-
-            <?= $form->field($this->$model, 'gender')->textInput() ?>
-
-            <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
+                <?php else: ?>
+                    <?= $form->field($model, 'name')->textInput() ?>
+                    <?= $form->field($model, 'last_name')->textInput() ?>
+                    <?= $form->field($model, 'age')->textInput() ?>
+                    <?= $form->field($model, 'gender')->textInput() ?>
+                    <div class="form-group">
+                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    </div>
+                <?php endif; ?>
             <?php ActiveForm::end(); ?>
-
-
-            <?php if ($this->$model->isPersonalDataComplete())
-                    foreach ($this->$model->QuizIitem as $key => $title)
-                    {
-                        echo $title;
-                    }
-            ?>
-
         </div>
     </div>
 
 </div>
-

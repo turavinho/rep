@@ -37,25 +37,4 @@ use yii\grid\GridView;
 
 
 
-<table class="table table-striped table-bordered">
-        <tr>
-            <td>Название анкеты</td>
-            <td>Описание</td>
-            <td>Количество вопросов</td>
-            <td>Количество ответов</td>
-        </tr>
-        <?php foreach($AdminForm->quest as $quest):?>
-            <?//Поля анкеты?>
-            <?php endforeach ?>
-        <tr>
-            <td><?=$quest->title;?></td>
-            <td><?=$quest->description;?></td>
-            <td><?=count($quest->asks)?></td>
-            <td><?=count($quest->replies)?></td>
-
-            <?php foreach ($quest->asks as $ask):?>
-            <?//Поля вопроса ?>
-            <?php endforeach ?>
-        </tr>
-</table>
 </div>

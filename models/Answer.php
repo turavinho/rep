@@ -25,7 +25,7 @@ class Answer extends \yii\db\ActiveRecord
 
     public function getQuiz()
     {
-        return $this->hasMany(Quiz::className(), ['quiz_id' => 'id']);  //relation 1 to many Answer *-> Quiz
+        return $this->hasOne(Quiz::className(), ['id' => 'quiz_id']);  //relation 1 to many Answer *-> Quiz
     }
 
     public function getAnswerItem()
