@@ -18,6 +18,11 @@ use Yii;
  */
 class Answer extends \yii\db\ActiveRecord
 {
+    public function answer()
+    {
+        return $this->$model->answer;
+    }
+
     public function getQuiz()
     {
         return $this->hasMany(Quiz::className(), ['quiz_id' => 'id']);  //relation 1 to many Answer *-> Quiz
@@ -87,8 +92,4 @@ class Answer extends \yii\db\ActiveRecord
     {
         return !empty($this->last_name) && !empty($this->name) && !empty($this->age) && !empty($this->gender);
     }
-
-
-
-
 }

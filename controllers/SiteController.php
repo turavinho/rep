@@ -23,13 +23,13 @@ class SiteController extends Controller
         $model = new Answer();
         if(isset($_POST['Answer']))
         {
-            $model->attributes = Yii::$app->request->post('Signup');
-            if($model->validate() && $model->Answer())
+            $model->attributes = Yii::$app->request->post('Answer');
+            if($model->validate() && $model->answer())
             {
                 return $this->goHome();
             }
         }
-        return $this->render('sign-up', ['model'=>$model]);
+        return $this->render('index', ['model'=>$model]);
     }
 
 
@@ -95,7 +95,7 @@ class SiteController extends Controller
                 'value' => $answerModel->id,
             ]));
         }
-
+        return $this->render('index');
 
     }
 

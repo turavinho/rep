@@ -5,51 +5,52 @@
 /* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
 use app\models\Answer;
+use app\models\Quiz;
+use app\models\QuizItem;
+use yii\i18n\Formatter;
+use yii\base\Component;
+use yii\base\Object;
 
-$this->title = 'Login';
+
+$this->title = 'Краткий ориентировочный тест';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-index">
+<div class="index">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <p>Заполните поля:</p>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => array(
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ),
-    ]); ?>
-    <?= $form->field($model, 'name')->textInput() ?>
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(['id' => '$id']) ?>
 
-    <?= $form->field($model, 'last_name')->textInput() ?>
+                <?= $form->field($model, 'name')->textInput() ?>
 
-    <?= $form->field($model, 'age')->textInput() ?>
+                <?= $form->field($model, 'last_name')->textInput() ?>
 
-    <?= $form->field($model, 'gender')->textInput() ?>
+                <?= $form->field($model, 'age')->textInput() ?>
 
-    <?php
-         if (isPersonalDataComplete)
-         {
-             render()
-         }
-    ?>
+                <?= $form->field($model, 'gender')->textInput() ?>
 
-    <div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php foreach ($model as $quiz_id)
+    {
+        foreach ($quiz_id as $id => $quiz_item )
+                echo $this->$model->$quiz_item;
+        }
+    ?>
 
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
-    </div>
+
 </div>
 
